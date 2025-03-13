@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
-const URI = "mongodb://localhost:27017/ZonaDigitalDB20230357";
+//const URI = "mongodb://localhost:27017/ZonaDigitalDB20230357";
+const URI = "mongodb+srv://Josue_rm:RealMadrid_elbichoGoat2018@Cluster0.mongodb.net/MOPT?retryWrites=true&w=majority";
 
 mongoose.connect(URI);
 
