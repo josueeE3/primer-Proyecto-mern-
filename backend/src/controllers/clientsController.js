@@ -1,5 +1,5 @@
 const clientsController = {};
-import Clients from "../models/Clients.js";
+import Clients from "../models/clients.js";
 
 clientsController.getClient = async (req, res) => {
 

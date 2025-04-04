@@ -4,6 +4,7 @@ import clientRoutes from "./src/routes/clients.js";
 import reviewRoutes from "./src/routes/reviews.js";
 import employeeRoutes from "./src/routes/employee.js";
 import registerEmployeeRoutes from "./src/routes/RegisterEmployee.js";
+import registerClientsRoutes from "./src/routes/registerClients.js";
 import cookieParser from "cookie-parser";
 
 const app = express();
@@ -18,6 +19,8 @@ app.use("/api/clients", clientRoutes);
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/employees", employeeRoutes);
 app.use("/api/registerEmployees", registerEmployeeRoutes);
+app.use("/api/registerClients", registerClientsRoutes);
+
 
 
 
