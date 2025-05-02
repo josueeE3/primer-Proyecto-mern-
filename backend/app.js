@@ -12,7 +12,7 @@ const app = express();
 
 app.use(express.json())
 
-app.use(cookieParser())
+app.use(cookieParser())                                                   
 
 app.use(express.json());
 app.use("/api/products", productRoutes);

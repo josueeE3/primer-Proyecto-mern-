@@ -63,7 +63,8 @@ passwordRecoveryController.requestCode = async (req, res) => {
         
     } catch (error) {
 
-        console.log("error" + error)
+        console.log("error" + error);
+        console.log(config.JWT.secret);
         
     }
 
@@ -107,6 +108,49 @@ passwordRecoveryController.requestCode = async (req, res) => {
 
         }
 
+    }
+
+
+    passwordRecoveryController.newPassword = async (req, res) => {
+        const { newPassword } = req.body;
+
+     try {
+        const token = req.cookies.tokenRecoveryCode;
+
+        const decoded = jsonwebtoken.verify(token, config.JWT.secret)
+
+        if(!decoded.verified){
+            return res.json({message: "Code not verified"})
+        }
+
+        const {email, userType} = decoded;
+        
+        const hashedPassword = await bcryptjs.hash(newPassword,10)
+
+        let updateUser;
+
+        if (userType === "client") {
+            updateUser = await clients.findOneAndUpdate(
+
+                {email},
+                {password: hashedPassword},
+                {new: true}
+            );
+        } else if (userType === "employee"){
+            updateUser = await employee.findOneAndUpdate(
+                {email},
+                {password: hashedPassword},
+                {new: true}
+            );
+        }
+
+        res.clearCookie("rokenRecoveryCode")
+
+        res.json({message: "Password updated"})
+
+     } catch (error) {
+        console.log("error" + error)
+     }
     }
 
 
