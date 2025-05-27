@@ -31,7 +31,8 @@ const employeesSchema = new Schema (
         },
         email:{
            type: String,
-           require: true
+           require: true,
+           unique: true
         },
         address:{
            type: String,
@@ -54,7 +55,8 @@ const employeesSchema = new Schema (
         dui:{
          type: String,
          require: true,
-         min: 10
+         min: 10,
+         unique: true
         },
         isssNumber:{
             type: Number,

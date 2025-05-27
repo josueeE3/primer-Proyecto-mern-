@@ -18,8 +18,7 @@ const app = express();
 app.use(
     cors(
         {
-            origin: "http://localhost:5173",
-            credentials: true
+            origin: "http://localhost:5173"
         }
     )
 )
@@ -33,7 +32,7 @@ app.use("/api/products", validateAuthToken(["admin"]), productRoutes);
 app.use("/api/clients", clientRoutes);
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/employees", employeeRoutes);
-app.use("/api/registerEmployees", validateAuthToken(["admin"]),  registerEmployeeRoutes);
+app.use("/api/registerEmployees",registerEmployeeRoutes);
 app.use("/api/registerClients", registerClientsRoutes);
 app.use("/api/recoveryPassword", recoveryPasswordRoutes);
 app.use("/api/providers", providersRoute);

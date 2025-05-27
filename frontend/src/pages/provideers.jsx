@@ -21,15 +21,58 @@ const ProviderForm = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
-      <h2 className="text-2xl font-bold text-center mb-6">Registro de Proveedor</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <input type="text" name="name" placeholder="Nombre del proveedor" className="input" onChange={handleChange} required />
-        <input type="text" name="telephone" placeholder="Teléfono" className="input" onChange={handleChange} required />
-        <input type="text" name="image" placeholder="URL de imagen" className="input" onChange={handleChange} required />
-        <button type="submit" className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-500">Registrar Proveedor</button>
-      </form>
+    <div className="mx-auto mt-1 p-8 bg-white shadow-lg rounded-lg min-h-[440px] max-w-4xl">
+
+  <form onSubmit={handleSubmit} className="space-y-6 text-left">
+    {/* Nombre del proveedor */}
+    <div>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Nombre"
+        className="input w-full"
+        onChange={handleChange}
+        required
+      />
     </div>
+
+    {/* Teléfono */}
+    <div>
+      <input
+        type="text"
+        id="telephone"
+        name="telephone"
+        placeholder="Teléfono"
+        className="input w-full"
+        onChange={handleChange}
+        required
+      />
+    </div>
+
+    {/* URL de imagen */}
+    <div>
+      <input
+        type="text"
+        id="image"
+        name="image"
+        placeholder="url img"
+        className="input w-full"
+        onChange={handleChange}
+        required
+      />
+    </div>
+
+    {/* Botón */}
+    <button
+      type="submit"
+      className="w-full bg-purple-600 text-black py-3 rounded-lg font-semibold hover:bg-purple-500 transition-colors"
+    >
+      Register 
+    </button>
+  </form>
+</div>
+
   );
 };
 

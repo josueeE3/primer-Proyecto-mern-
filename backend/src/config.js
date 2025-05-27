@@ -7,7 +7,7 @@ dotenv.config();
 export const config = {
     db:{
         URI: 
-        process.env.DB_URI || "mongodb://localhost:27017/ZonaDigitalDB20230357"
+        process.env.DB_URI || "mongodb+srv://Josue_rm:Josuerm@cluster0.x5zip.mongodb.net/ZonaDigital?retryWrites=true&w=majority&appName=Cluster0"
     },
     Server:{
         port: process.env.PORT || 4000,
