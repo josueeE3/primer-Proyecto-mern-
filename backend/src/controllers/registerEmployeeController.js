@@ -41,7 +41,7 @@ registerEmployeeController.register = async(req, res)=> {
             birthday,
             email,
             address,
-            password,
+            password:passwordHash,
             hireDate,
             telephone,
             dui,

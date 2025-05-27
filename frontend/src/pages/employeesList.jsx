@@ -14,10 +14,11 @@ function EmployeesList() {
   return (
     <div>
       {employees.map((employee) => (
-        <EmployeeCard employee={employee} key={employee._id}/>
-      ))}
+        <EmployeeCard key={employee._id} employee={employee}/>
+        
+      ))} 
     </div>
-  );
+   );
 }
 
 export default EmployeesList;

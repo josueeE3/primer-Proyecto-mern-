@@ -42,6 +42,8 @@ employeeController.createEmployee = async (req, res) => {
 employeeController.deleteEmployee = async (req, res) => {
 
     await Employee.findOneAndDelete(req.params.id)
+    res.json({message: "employee deleted "})
+
 }
 
 employeeController.updateEmployee = async (req,res) => {

@@ -4,32 +4,37 @@ import { useEmployees } from "../context/employeeContext";
 import { useNavigate } from "react-router-dom";
 
 
+
 function EmployeeForm() {
+
+  const { createEmployee, getEmployees } = useEmployees();
+
   const { register, handleSubmit, formState: { errors }, } = useForm();
 
-  const {createEmployee} = useEmployees()
-
+  
   const onSubmit = async (values) => {
     try {
       const res = await createEmployee(values);
-      navigate("/dashboard/employeesList");
-      console.log("Respuesta del backend:", res);
-
-
 
       if (res?.data?.message === "Empleado guardado exitosamente") {
+        await getEmployees();
+        navigate("/dashboard/employeesList");
+
         Swal.fire({
           title: '¡Éxito!',
           text: 'Empleado registrado correctamente',
           icon: 'success',
           confirmButtonText: 'Aceptar',
         });
+      } else {
+        throw new Error("La respuesta no fue la esperada.");
       }
     } catch (error) {
+      console.error("Error en onSubmit:", error);
 
       Swal.fire({
         title: 'Error',
-        text: error.response?.data?.message || "Error al registrar el empleado",
+        text: error.response?.data?.message || error.message || "Error al registrar el empleado",
         icon: 'error',
         confirmButtonText: 'Aceptar',
       });

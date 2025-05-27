@@ -4,6 +4,8 @@ import Dashboard from "./pages/dashboard.jsx";
 import Provideers from "./pages/provideers.jsx";
 import Employees from "./pages/employee.jsx";
 import EmployeesList from "./pages/employeesList.jsx";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 import {EmployeeProvider} from './context/employeeContext'
 
@@ -13,6 +15,7 @@ function App() {
   return (
     <EmployeeProvider>
       <BrowserRouter>
+      <ToastContainer position="top-right" autoClose={3000} />
       <Routes>
 
         <Route path="/dashboard" element={<Dashboard />}>

@@ -32,10 +32,8 @@ function EmployeeCard({ employee }) {
       <button className="rounded-lg m-2">Editar</button>
       <button
         className="rounded-lg m-2"
-        onClick={() => {
-          deleteEmployee(employee._id);
-          console.log("Click en eliminar:", employee._id);
-        }}
+        onClick={() => 
+          deleteEmployee(employee._id)}
       >
         Eliminar
       </button>
