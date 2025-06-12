@@ -13,6 +13,12 @@ import loginRoute from "./src/routes/login.js"
 import { validateAuthToken } from "./src/middlewares/validateAuthToken.js";
 import cors from "cors"
 
+import swaggerUI, { serve } from "swagger-ui-express"
+
+import fs from "fs"
+
+import path from "path"
+
 const app = express();
 
 app.use(
@@ -25,7 +31,13 @@ app.use(
 
 app.use(express.json())
 
-app.use(cookieParser())                                                   
+app.use(cookieParser())   
+
+const swaggerDoc = JSON.parse(
+    fs.readFileSync(path.resolve("./Documentation.json"), "utf-8")
+)
+
+app.use("/api/docs" , swaggerUI.serve, swaggerUI.setup(swaggerDoc));
 
 app.use(express.json());
 app.use("/api/products", validateAuthToken(["admin"]), productRoutes);
