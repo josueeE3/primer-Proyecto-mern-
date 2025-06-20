@@ -17,14 +17,8 @@ router.route("/:id")
 
 /* --------------------  */
 
+router.route("/stock").get(productsController.stockProducts)
 
-router.route("/")
-.get(clientsController.getClient)
-.post(clientsController.createClient)
-
-router.route("/:id")
-.put(clientsController.updateClient)
-.delete(clientsController.deleteClient)
 
 
 

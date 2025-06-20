@@ -2,41 +2,59 @@ const productsController = {};
 import Products from "../models/Products.js";
 
 productsController.getProductos = async (req, res) => {
+  const products = await Products.find();
 
-    const products = await Products.find()
+  res.json(products);
+};
 
-    res.json(products)
-}                   
-
-
-//insert 
-
+//insert
 
 productsController.createProduct = async (req, res) => {
+  const { name, description, price, stock } = req.body;
 
-    const {name, description, price, stock} = req.body;
-    
-    const newProduct = new Products({name, description, price, stock});
+  const newProduct = new Products({ name, description, price, stock });
 
-    await newProduct.save()
+  await newProduct.save();
 
-    res.json({message: "product saved"});
-}
- 
-
+  res.json({ message: "product saved" });
+};
 
 productsController.deleteProducto = async (req, res) => {
+  await Products.findOneAndDelete(req.params.id);
+};
 
-    await Products.findOneAndDelete(req.params.id)
-}
+productsController.updateProducts = async (req, res) => {
+  const { name, description, price, stock } = req.body;
 
-productsController.updateProducts = async (req,res) => {
+  await Products.findByIdAndUpdate(
+    req.params.id,
+    { name, description, price, stock },
+    { new: true }
+  );
 
-    const {name,description,price,stock} = req.body;
+  res.json({ message: "product updated " });
+};
 
-    await Products.findByIdAndUpdate(req.params.id, {name,description,price,stock}, {new: true});
+productsController.stockProducts = async (req, res) => {
+  try {
+    const resultado = await Products.aggregate([
+      {
+        $project: {
+            name: 1,
+            stockOriginal: "$stock",
+          },
+      },
+      {
+        $limit: 4,
+      },
+    ]);
 
-    res.json({message: "product updated "})
-}
+    res.status(200).json(resultado);
+  } catch (error) {
+    console.log("error" + error);
+
+    res.status(500).json({ message: "internal server error" });
+  }
+};
 
 export default productsController;

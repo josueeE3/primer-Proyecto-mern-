@@ -42,7 +42,7 @@ const swaggerDoc = JSON.parse(
 app.use("/api/docs" , swaggerUI.serve, swaggerUI.setup(swaggerDoc));
 
 app.use(express.json());
-app.use("/api/products", validateAuthToken(["admin"]), productRoutes);
+app.use("/api/products",productRoutes);
 app.use("/api/clients", clientRoutes);
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/employees", employeeRoutes);
