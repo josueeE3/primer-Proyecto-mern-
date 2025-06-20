@@ -19,6 +19,8 @@ import fs from "fs"
 
 import path from "path"
 
+import salesRoutes from "./src/routes/sales.js"
+
 const app = express();
 
 app.use(
@@ -48,6 +50,7 @@ app.use("/api/registerEmployees",registerEmployeeRoutes);
 app.use("/api/registerClients", registerClientsRoutes);
 app.use("/api/recoveryPassword", recoveryPasswordRoutes);
 app.use("/api/providers", providersRoute);
+app.use("/api/sales", salesRoutes);
 
 app.use("/api/login", loginRoute);
 
